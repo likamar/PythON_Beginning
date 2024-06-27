@@ -1,4 +1,4 @@
-from product import products
+from product import products, product_info
 
 
 class Order:
@@ -17,12 +17,14 @@ class Order:
         return total_price
 
 
+def order_info(order: Order):
+    print(f"Customer Name: {order.customer_name}\nCustomer Surname: {order.customer_surname}")
+    print("Products: ")
+    for product in order.products_list:
+        product_info(product)
+
+
 order_1 = Order(customer_name="Tom", customer_surname="Jones", products_list=products)
 
-print("Order_1:")
-print(f"Customer Name: {order_1.customer_name}")
-print(f"Customer Surname: {order_1.customer_surname}")
-print(f"products_list:")
-for product in order_1.products_list:
-    print(f"Product: {product.name}, category: {product.category}, unit price: {product.unit_price}")
-print(f"total_price: {order_1.total_price}")
+if __name__ == "__main__":
+    order_info(order_1)
