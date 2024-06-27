@@ -13,5 +13,10 @@ products = [
     Product(name="ham", category="meat", unit_price=49.99)
 ]
 
-for product in products:
+
+def product_info(product: Product):
     print(f"Product: {product.name}, category: {product.category}, unit price: {product.unit_price}")
+
+
+for product in products:
+    product_info(product)
