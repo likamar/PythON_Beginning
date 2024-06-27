@@ -15,8 +15,9 @@ products = [
 
 
 def product_info(product: Product):
-    print(f"Product: {product.name}, category: {product.category}, unit price: {product.unit_price}")
+    print(f"{product.name}, category: {product.category}, unit price: {product.unit_price}")
 
 
-for product in products:
-    product_info(product)
+if __name__ == "__main__":
+    for product in products:
+        product_info(product)
