@@ -1,4 +1,4 @@
-from product import products, product_info, Product,
+from product import products, product_info, Product, generate_random_product
 
 
 class Order:
@@ -24,13 +24,16 @@ def order_info(order: Order):
         product_info(product)
 
 
-def generate_random_order(number_of_products: int=1):
+def generate_random_order(number_of_products: int = 1):
     products_list = []
     for i in range(1, number_of_products + 1):
-        products_list.append(Product(name="Product_" + str(i), category="test", unit_price=1))
+        products_list.append(generate_random_product(i))
+    return Order("test_name", "test_surname", products_list)
 
 
 if __name__ == "__main__":
     order_1 = Order(customer_name="Tom", customer_surname="Jones", products_list=products)
     order_info(order_1)
-    generate_random_order(5)
+    print("\nRandom order:")
+    random_order = generate_random_order(5)
+    order_info(random_order)
