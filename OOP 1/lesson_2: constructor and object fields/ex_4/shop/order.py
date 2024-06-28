@@ -1,5 +1,5 @@
 from .product import product_info, generate_random_product
-
+import random
 
 class Order:
     def __init__(self, customer_name, customer_surname, products_list=None):
@@ -24,8 +24,9 @@ def order_info(order: Order):
         product_info(product)
 
 
-def generate_random_order(number_of_products: int = 1):
+def generate_random_order():
     products_list = []
+    number_of_products = random.randint(1, 10)
     for i in range(1, number_of_products + 1):
         products_list.append(generate_random_product(i))
     return Order("test_name", "test_surname", products_list)

@@ -19,5 +19,5 @@ if __name__ == "__main__":
     order_1 = Order(customer_name="Tom", customer_surname="Jones", products_list=products)
     order_info(order_1)
     print("\nRandom order:")
-    random_order = generate_random_order(5)
+    random_order = generate_random_order()
     order_info(random_order)
