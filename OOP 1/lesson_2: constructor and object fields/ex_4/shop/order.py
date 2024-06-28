@@ -18,9 +18,11 @@ class Order:
 
 
 def order_info(order: Order):
-    print(f"Customer Name: {order.customer_name}\nCustomer Surname: {order.customer_surname}")
+    print(f"Customer: {order.customer_name} {order.customer_surname}")
+    print(f"Total price: {order.total_price}")
     print("Products: ")
     for product in order.products_list:
+        print("\t", end="")
         product_info(product)
 
 
