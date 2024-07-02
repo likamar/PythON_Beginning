@@ -1,4 +1,5 @@
 from shop.product import Product
+from typing import Self
 
 
 class OrderElement:
@@ -17,4 +18,7 @@ class OrderElement:
     def __str__(self):
         return (f"{self.product}\nQuantity: {self.quantity}\n"
                 f"Element price: {self.order_element_price():.2f}\n")
+
+    def __eq__(self, other: Self):
+        return self.product == other.product and self.quantity == other.quantity
 
