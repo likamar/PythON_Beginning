@@ -62,11 +62,6 @@ class Order:
         # if copy of the list is empty == all elements were similar
         return len(other_order_elements_copy) == 0
 
-        # for order_element in self.order_elements:
-        #     if order_element not in other.order_elements:
-        #         return False
-        #     return True
-
 
 def generate_random_order():
     order_elements = []
