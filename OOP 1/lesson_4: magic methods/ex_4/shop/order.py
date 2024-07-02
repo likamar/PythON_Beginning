@@ -1,4 +1,5 @@
 import random
+from typing import Self
 
 from .product import generate_random_product
 from .order_element import OrderElement
@@ -36,6 +37,35 @@ class Order:
 
     def __len__(self):
         return len(self.order_elements)
+
+    def __eq__(self, other: Self):
+        if self.__class__ != other.__class__:
+            return NotImplemented
+
+        if len(self.order_elements) != len(other.order_elements):
+            return False
+
+        if self.customer_name != other.customer_name or self.customer_surname != other.customer_surname:
+            return False
+
+        if self.total_price != other.total_price:
+            return False
+
+        # Making a copy of other.order_elements to modify list
+        other_order_elements_copy = other.order_elements.copy()
+        for order_element in self.order_elements:
+            if order_element in other_order_elements_copy:
+                # if order_element is on the list - remove it
+                other_order_elements_copy.remove(order_element)
+            else:
+                return False
+        # if copy of the list is empty == all elements were similar
+        return len(other_order_elements_copy) == 0
+
+        # for order_element in self.order_elements:
+        #     if order_element not in other.order_elements:
+        #         return False
+        #     return True
 
 
 def generate_random_order():

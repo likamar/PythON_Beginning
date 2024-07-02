@@ -15,6 +15,8 @@ class Product:
         return f"{self.name}, category: {self.category}, unit price: {self.unit_price:.2f}"
 
     def __eq__(self, other: Self):
+        if self.__class__ != other.__class__:
+            return NotImplemented
         return self.name == other.name and self.category == other.category and self.unit_price == other.unit_price
 
 

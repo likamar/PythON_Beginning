@@ -20,5 +20,7 @@ class OrderElement:
                 f"Element price: {self.order_element_price():.2f}\n")
 
     def __eq__(self, other: Self):
+        if self.__class__ != other.__class__:
+            return NotImplemented
         return self.product == other.product and self.quantity == other.quantity
 
