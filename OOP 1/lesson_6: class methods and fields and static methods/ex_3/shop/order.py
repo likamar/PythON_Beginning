@@ -23,7 +23,7 @@ class Order:
     def _calc_total_price(self):
         total_price = 0
         for element in self._order_elements:
-            total_price += element.order_element_price()
+            total_price += element.order_element_gross_price()
         return total_price
 
     def order_info(self):
@@ -34,12 +34,13 @@ class Order:
             element.order_element_info()
 
     def __str__(self):
-        customer_details = f"Customer: {self.customer_name} {self.customer_surname}"
+        customer_details = f"\nCustomer: {self.customer_name} {self.customer_surname}"
         total_price = f"Total price: {self.total_price:.2f}"
         order_elements = f"Order elements({len(self)}):\n\n"
+        mark_line = "-" * 50
         for element in self._order_elements:
             order_elements += f"{element}\n"
-        return f"{customer_details}\n{total_price}\n{order_elements}"
+        return f"{customer_details}\n{total_price}\n{order_elements}{mark_line}"
 
     def __len__(self):
         return len(self._order_elements)
