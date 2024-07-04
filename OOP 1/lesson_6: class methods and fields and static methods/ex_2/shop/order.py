@@ -76,12 +76,12 @@ class Order:
             self._order_elements.append(new_order_element)
             self.total_price = self._calc_total_price()
 
-
-def generate_random_order(number_of_elements: int):
-    order_elements = []
-    if number_of_elements > Order.MAX_ORDER_ELEMENTS:
-        number_of_elements = Order.MAX_ORDER_ELEMENTS
-    for i in range(1, number_of_elements + 1):
-        quantity = random.randint(1, 10)
-        order_elements.append(OrderElement(generate_random_product(i), quantity))
-    return Order("test_name", "test_surname", order_elements)
+    @classmethod
+    def generate_random_order(cls, number_of_elements: int):
+        order_elements = []
+        if number_of_elements > cls.MAX_ORDER_ELEMENTS:
+            number_of_elements = cls.MAX_ORDER_ELEMENTS
+        for i in range(1, number_of_elements + 1):
+            quantity = random.randint(1, 10)
+            order_elements.append(OrderElement(generate_random_product(i), quantity))
+        return Order("test_name", "test_surname", order_elements)
