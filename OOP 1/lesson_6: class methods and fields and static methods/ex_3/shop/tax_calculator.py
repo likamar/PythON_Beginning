@@ -2,8 +2,8 @@ class TaxCalculator:
     TAX_RATES = {
         'fruits and veg': 0.05,
         'food': 0.08,
-        'other': 0.20
     }
+    BASE_TAX_RATE = 0.2
 
     @staticmethod
     def calculate_tax(order_element):
@@ -12,10 +12,8 @@ class TaxCalculator:
 
     @staticmethod
     def get_tax_rate(order_element):
-        if order_element.product.category == 'fruits and veg':
-            tax_rate = TaxCalculator.TAX_RATES['fruits and veg']
-        elif order_element.product.category == 'food':
-            tax_rate = TaxCalculator.TAX_RATES['food']
+        product_category = order_element.product.category
+        if product_category in TaxCalculator.TAX_RATES:
+            return TaxCalculator.TAX_RATES[product_category]
         else:
-            tax_rate = TaxCalculator.TAX_RATES['other']
-        return tax_rate
+            return TaxCalculator.BASE_TAX_RATE
