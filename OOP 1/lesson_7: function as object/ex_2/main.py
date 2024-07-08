@@ -1,6 +1,7 @@
 from shop.product import Product
 from shop.order import Order
 from shop.order_element import OrderElement
+from shop.discount_policy import default_policy, loyal_customer_policy, christmas_policy
 
 if __name__ == '__main__':
     order_1 = Order.generate_random_order(9)
@@ -14,10 +15,10 @@ if __name__ == '__main__':
 
     product_2 = Product(name='Apple', category="fruits and veg", unit_price=4.99)
     order_2_elements = [OrderElement(product_2, 5)]
-    order_2 = Order(customer_name="Jan", customer_surname="Kowalski", order_elements=order_2_elements)
+    order_2 = Order(customer_name="Jan", customer_surname="Kowalski", order_elements=order_2_elements, discount_policy=loyal_customer_policy)
     print(order_2)
 
-    product_3 = Product(name='beef', category="food", unit_price=64.99)
+    product_3 = Product(name='beef', category="food", unit_price=164.99)
     order_3_elements = [OrderElement(product_3, 1)]
-    order_3 = Order(customer_name="Adam", customer_surname="Nowak", order_elements=order_3_elements)
+    order_3 = Order(customer_name="Adam", customer_surname="Nowak", order_elements=order_3_elements, discount_policy=christmas_policy)
     print(order_3)

@@ -4,12 +4,12 @@ from typing import Self
 from .product import generate_random_product
 from .order_element import OrderElement
 from .product import Product
-
+from .discount_policy import default_policy, christmas_policy, loyal_customer_policy
 
 class Order:
     MAX_ORDER_ELEMENTS = 10
 
-    def __init__(self, customer_name, customer_surname, order_elements: list = None):
+    def __init__(self, customer_name, customer_surname, order_elements: list = None, discount_policy=None):
         self.customer_name = customer_name
         self.customer_surname = customer_surname
         if order_elements is None:
@@ -18,13 +18,23 @@ class Order:
             self._order_elements = order_elements[0:Order.MAX_ORDER_ELEMENTS]
         else:
             self._order_elements = order_elements
+        if discount_policy is None:
+            self.discount_policy = default_policy
+        else:
+            self.discount_policy = discount_policy
         self.total_price = self._calc_total_price()
 
-    def _calc_total_price(self):
+    def calc_price_before_discount(self):
         total_price = 0
         for element in self._order_elements:
             total_price += element.order_element_gross_price()
         return total_price
+
+    def _calc_total_price(self):
+        return self.discount_policy(self.calc_price_before_discount())
+
+    def get_discount_value(self):
+        return self.total_price - self.calc_price_before_discount()
 
     def order_info(self):
         print(f"Customer: {self.customer_name} {self.customer_surname}")
@@ -36,11 +46,12 @@ class Order:
     def __str__(self):
         customer_details = f"\nCustomer: {self.customer_name} {self.customer_surname}"
         total_price = f"Total price: {self.total_price:.2f}"
+        discount_value = f"Discount: {self.get_discount_value():.2f}"
         order_elements = f"Order elements({len(self)}):\n\n"
         mark_line = "-" * 50
         for element in self._order_elements:
             order_elements += f"{element}\n"
-        return f"{customer_details}\n{total_price}\n{order_elements}{mark_line}"
+        return f"{customer_details}\n{total_price}\n{discount_value}\n{order_elements}{mark_line}"
 
     def __len__(self):
         return len(self._order_elements)
