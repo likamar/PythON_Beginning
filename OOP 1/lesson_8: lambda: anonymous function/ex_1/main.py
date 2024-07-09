@@ -10,9 +10,6 @@ if __name__ == '__main__':
         order_elements_number = random.randint(1, 10)
         orders_list.append(Order.generate_random_order(order_elements_number))
 
-    def get_order_price(order: Order):
-        return order.total_price
-
     print("Unordered list:")
     for order in orders_list:
         print(f"{order.total_price:.2f}")
