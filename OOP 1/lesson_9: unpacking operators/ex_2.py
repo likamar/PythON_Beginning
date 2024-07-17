@@ -11,10 +11,11 @@ def print_self(**kwargs):
     return result
 
 
-example = print_self(
-    name="Marcin",
-    age=18,
-    city="San Francisco",
-)
+if __name__ == '__main__':
+    example = print_self(
+        name="Marcin",
+        age=18,
+        city="San Francisco",
+    )
 
-print(example)
+    print(example)
