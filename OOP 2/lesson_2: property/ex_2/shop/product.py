@@ -1,11 +1,11 @@
 from typing import Self
-from decimal import Decimal
+
 
 class Product:
     def __init__(self, name, category, unit_price):
         self.name = name
         self.category = category
-        self.unit_price = Decimal(unit_price)
+        self.unit_price = unit_price
 
     def product_info(self):
         print(f"{self.name}, category: {self.category}, unit price: {self.unit_price:.2f}")
